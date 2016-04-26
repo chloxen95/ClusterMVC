@@ -3,7 +3,7 @@ package com.chl.nbcluster.core.algotithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.chl.nbcluster.utils.UtilMethod;
+import com.chl.nbcluster.utils.Util;
 
 /**
  * 计算每个点与 比它的局部密度更大的点 的距离 的最小值 <code>sigma</code>
@@ -66,7 +66,7 @@ public class Sigma {
 			Double sigma_temp = Double.MAX_VALUE;
 			int j_temp = -1;
 			for (int j = 0; j < total; j++) {
-				double dij = UtilMethod.PointDistance(dataset.get(i), dataset.get(j));
+				double dij = Util.PointDistance(dataset.get(i), dataset.get(j));
 				if ((rho.get(j) > rho.get(i))
 						// ↑ --- 判断 j 的局部密度是否大于 j
 						&&
@@ -80,7 +80,7 @@ public class Sigma {
 			if (sigma_temp == Double.MAX_VALUE) {
 				for (Double[] point : dataset) {
 					sigma_temp = 0.0;
-					double dij = UtilMethod.PointDistance(dataset.get(i), point);
+					double dij = Util.PointDistance(dataset.get(i), point);
 					sigma_temp = dij > sigma_temp ? dij : sigma_temp;
 				}
 				jIndex.add(-1);

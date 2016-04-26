@@ -10,7 +10,7 @@ import com.chl.nbcluster.core.algotithm.Rho;
 import com.chl.nbcluster.core.algotithm.Sigma;
 import com.chl.nbcluster.utils.DataLoader;
 import com.chl.nbcluster.utils.RandomPoints;
-import com.chl.nbcluster.utils.UtilMethod;
+import com.chl.nbcluster.utils.Util;
 
 public class nbclusterTest {
 
@@ -18,7 +18,7 @@ public class nbclusterTest {
 	double dc = 0.25;
 
 	// 实用工具
-	UtilMethod um;
+	Util um;
 	// 载入数据
 	DataLoader dataLoader;
 	List<Double[]> dataset;

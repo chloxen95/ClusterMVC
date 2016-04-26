@@ -3,7 +3,7 @@ package com.chl.nbcluster.core.algotithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.chl.nbcluster.utils.UtilMethod;
+import com.chl.nbcluster.utils.Util;
 
 /**
  * 自动选择决策边界 <code>dc</code> 大小
@@ -74,7 +74,7 @@ public class AutoDecision {
 				coreIndex.add(i);
 		}
 		
-		Double average = UtilMethod.AverageInt(rho, coreIndex);
+		Double average = Util.AverageInt(rho, coreIndex);
 		if(average >= point.size() && average <= point.size()){
 			dc = dc_temp;
 			return dc_temp;

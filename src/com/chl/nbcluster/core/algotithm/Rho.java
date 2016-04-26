@@ -3,7 +3,7 @@ package com.chl.nbcluster.core.algotithm;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.chl.nbcluster.utils.UtilMethod;
+import com.chl.nbcluster.utils.Util;
 
 /**
  * 计算局部密度 <code>rho</code> 
@@ -55,7 +55,7 @@ public class Rho {
 			rho_temp = 0;
 			
 			for (Double[] j : dataset) {
-				dij = UtilMethod.PointDistance(i, j);
+				dij = Util.PointDistance(i, j);
 				rho_temp += (dij - dc <= 0 ? 1 : 0);
 			}
 			
