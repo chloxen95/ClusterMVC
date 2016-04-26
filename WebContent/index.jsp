@@ -58,6 +58,11 @@
     		position: absolute;
     		top: 92%;
     	}
+    	#eventTest{
+    		position: absolute;
+    		top: 70%;
+    		left: 50px;
+    	}
     	/*
     	#rights{
     		position: absolute;
@@ -118,6 +123,9 @@
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="point_display" style="width: 400px; height:400px;"></div>
 <div id="param_display" style="width: 600px; height:400px;"></div>
+<div id="eventTest">
+	<p id="info">Here shows info of the point</p>
+</div>
 <script>
 $(function(){
 	
@@ -128,10 +136,12 @@ $(function(){
 	var param = [];				// 参数 Rho & Sigma
 	var table_data = [];			// 表格数据，拼接 点坐标 和 参数
 	var table;							// 表格
+//	var markPoint;				// 标记点参数
 	// 数据点展示
 	var pointChart = echarts.init(document.getElementById('point_display'));
 	// 决策图展示
 	var paramChart = echarts.init(document.getElementById('param_display'));
+	// 调色板
 	var color = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
 
 	$("#generate").click(function(){
@@ -169,7 +179,7 @@ $(function(){
 					point = result.point;
 					param = result.param;
 					table_data = loadTableData(point, param);
-					loadGraphic(pointChart, "Point: <br /> ( {c} )","Point", point, color[0]);
+					loadGraphic(pointChart, "Point: <br /> ( {c} )","Point", point, {}, color[0]);
 					loadGraphic(
 							paramChart, 
 							function(params, ticket, callback){
@@ -177,7 +187,7 @@ $(function(){
 										" , " + point[params.dataIndex][1] + " ) <br\>" +
 										"Param: ( "+ params.data[0] +" , " + params.data[1] +" )";
 							},
-							"Decision", param, color[1]);
+							"Decision", param, {}, color[1]);
 					loadTable(table_data);
 				}
 			});
@@ -187,6 +197,31 @@ $(function(){
 	$("#autoChoose").on("click", function(e){
 		//alert("This button has no use. Don't click it again.");
 		$("#decision").val(Math.random());
+	});
+	
+	paramChart.on("click", function(params){
+		var markPoint = {
+			label: {
+				normal: {
+					formatter: function(p){
+						return param[params.dataIndex][0];
+					}
+				}
+			},
+			itemStyle: {
+				normal: {
+					color: color[4]
+				}
+			},
+			data: [{
+				coord: point[params.dataIndex]
+			}]
+		};
+		loadGraphic(pointChart, "Point: <br /> ( {c} )","Point", point, markPoint, color[0]);
+		var info = "Point: ( " +point[params.dataIndex][0] + " , " + point[params.dataIndex][1] + " ) <br/>" +
+						  "Rho: " + param[params.dataIndex][0] + "<br/>" +
+						  "Sigma: " + param[params.dataIndex][1];
+		$("#info").html(info);
 	});
 	
 	function loadTableData(point, param){
@@ -220,7 +255,7 @@ $(function(){
 			});
 	}
 	
-	function loadGraphic(myChart, formatter, graphicName, data, color){
+	function loadGraphic(myChart, formatter, graphicName, data, markPoint, color){
 		 var option = {
                 title: {
                     text: graphicName + " Graphic"
@@ -243,6 +278,7 @@ $(function(){
                 			color: color
                 		}
                 	},
+                	markPoint: markPoint
                 }]
             };
 
