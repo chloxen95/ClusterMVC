@@ -134,6 +134,7 @@ $(function(){
 	
 	var point = [];					// 数据点坐标
 	var param = [];				// 参数 Rho & Sigma
+	var jIndex = [];				// 参数 jIndex
 	var table_data = [];			// 表格数据，拼接 点坐标 和 参数
 	var table;							// 表格
 //	var markPoint;				// 标记点参数
@@ -178,6 +179,8 @@ $(function(){
 					$("#autoChoose").removeAttr("disabled");
 					point = result.point;
 					param = result.param;
+					jIndex = result.jIndex;
+					console.log(jIndex);
 					table_data = loadTableData(point, param);
 					loadGraphic(pointChart, "Point: <br /> ( {c} )","Point", point, {}, color[0]);
 					loadGraphic(

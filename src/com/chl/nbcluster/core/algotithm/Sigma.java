@@ -21,6 +21,14 @@ public class Sigma {
 	 * 局部密度集
 	 */
 	private List<Integer> rho;
+	/**
+	 * 计算 Sigma(i) 时点 j 坐标的序号
+	 */
+	private List<Integer> jIndex = new ArrayList<>();
+	
+	public List<Integer> getJIndex(){
+		return jIndex;
+	}
 
 	public void setDataset(List<Double[]> dataset) {
 		this.dataset = dataset;
@@ -43,6 +51,7 @@ public class Sigma {
 		this.dataset = dataset;
 		this.rho = rho;
 	}
+	
 
 	/**
 	 * 计算 <code>sigma</code>
@@ -55,14 +64,17 @@ public class Sigma {
 
 		for (int i = 0; i < total; i++) {
 			Double sigma_temp = Double.MAX_VALUE;
+			int j_temp = -1;
 			for (int j = 0; j < total; j++) {
 				double dij = UtilMethod.PointDistance(dataset.get(i), dataset.get(j));
 				if ((rho.get(j) > rho.get(i))
 						// ↑ --- 判断 j 的局部密度是否大于 j
 						&&
 						// ↓ --- 判断两点距离是否更小
-						(dij < sigma_temp))
+						(dij < sigma_temp)){
 					sigma_temp = dij;
+					j_temp = j;
+				}
 			}
 
 			if (sigma_temp == Double.MAX_VALUE) {
@@ -71,8 +83,11 @@ public class Sigma {
 					double dij = UtilMethod.PointDistance(dataset.get(i), point);
 					sigma_temp = dij > sigma_temp ? dij : sigma_temp;
 				}
+				jIndex.add(-1);
+			} else {
+				jIndex.add(j_temp);
 			}
-
+			
 			sigma.add(sigma_temp);
 		}
 

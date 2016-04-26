@@ -52,14 +52,13 @@ public class nbclusterTest {
 
 	@Test
 	public void testParams() {
-
-		// int total = dataset.size();
-		//
-		// System.out.println("[");
-		// for (int i = 0; i < total; i++) {
-		// System.out.println("\t[" + rho.get(i) + "," + sigma.get(i) + "],");
-		// }
-		// System.out.println("]");
+		 int total = dataset.size();
+		
+		 System.out.println("[");
+		 for (int i = 0; i < total; i++) {
+		 System.out.println("\t[" + rho.get(i) + "," + sigma.get(i) + "],");
+		 }
+		 System.out.println("]");
 	}
 
 	@Test

@@ -13,6 +13,9 @@ import com.chl.nbcluster.utils.RandomPoints;
 public class ParamGeneratorImpl implements ParamGenerator {
 
 	private Double dc;
+	List<Double[]> list;
+	Rho rhoData;
+	Sigma sigmaData;
 
 	public List<Double[]> GeneratePoints(HttpServletRequest request) {
 		Double x1_upper = Double.parseDouble(request.getParameter("x1_upper"));
@@ -30,7 +33,7 @@ public class ParamGeneratorImpl implements ParamGenerator {
 		RandomPoints rp2 = new RandomPoints(number, x2_lower, x2_upper, y2_lower, y2_upper);
 		List<Double[]> list1 = rp1.getRandomPoints();
 		List<Double[]> list2 = rp2.getRandomPoints();
-		List<Double[]> list = new ArrayList<>();
+		list = new ArrayList<>();
 
 		list.addAll(list1);
 		list.addAll(list2);
@@ -41,17 +44,23 @@ public class ParamGeneratorImpl implements ParamGenerator {
 	public List<Object[]> GenerateParam(List<Double[]> point) {
 		int num = point.size();
 
-		Rho rhoData = new Rho(dc, point);
+		rhoData = new Rho(dc, point);
 		List<Integer> rho = rhoData.getRho();
-		Sigma sigmaData = new Sigma(point, rho);
+		sigmaData = new Sigma(point, rho);
 		List<Double> sigma = sigmaData.getSigma();
 
 		List<Object[]> param = new ArrayList<>();
 		for (int i = 0; i < num; i++)
-			param.add(new Object[] { rho.get(i), sigma.get(i) });
+			param.add(new Object[] { rho.get(i), sigma.get(i)});
 
 		return param;
-
+	}
+	
+	public List<Integer> GenerateJIndex(){
+		List<Integer> jIndex = sigmaData.getJIndex();
+		System.out.println(jIndex);
+		
+		return jIndex;
 	}
 
 }

@@ -23,10 +23,12 @@ public class ParamGeneratorController {
 		ParamGeneratorImpl pg = new ParamGeneratorImpl();
 		List<Double[]> point = pg.GeneratePoints(request);
 		List<Object[]> param = pg.GenerateParam(point);
+		List<Integer> jIndex = pg.GenerateJIndex();
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("point", point);
 		map.put("param", param);
+		map.put("jIndex", jIndex);
 
 		return map;
 	}
