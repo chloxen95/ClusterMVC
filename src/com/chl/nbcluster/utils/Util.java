@@ -14,10 +14,8 @@ public class Util {
 	/**
 	 * 计算欧式距离
 	 * 
-	 * @param i
-	 *            第一个点坐标
-	 * @param j
-	 *            第二个点坐标
+	 * @param i 第一个点坐标
+	 * @param j 第二个点坐标
 	 * @return 欧式距离
 	 */
 	public static Double PointDistance(double[] i, double[] j) {
@@ -27,10 +25,8 @@ public class Util {
 	/**
 	 * 计算欧式距离
 	 * 
-	 * @param i
-	 *            第一个点坐标
-	 * @param j
-	 *            第二个点坐标
+	 * @param i 第一个点坐标
+	 * @param j 第二个点坐标
 	 * @return 欧式距离
 	 */
 	public static Double PointDistance(Double[] i, Double[] j) {
@@ -40,8 +36,7 @@ public class Util {
 	/**
 	 * 计算数组列表的平均值
 	 * 
-	 * @param number
-	 *            数组列表
+	 * @param number 数组列表
 	 * @return 平均值
 	 */
 	public static Double AverageDouble(List<Double> number) {
@@ -54,10 +49,8 @@ public class Util {
 	/**
 	 * 计算数组列表中指定序号所对应数的平均值
 	 * 
-	 * @param number
-	 *            数组列表
-	 * @param index
-	 *            指定序号列表
+	 * @param number 数组列表
+	 * @param index 指定序号列表
 	 * @return 平均值
 	 */
 	public static Double AverageDouble(List<Double> number, List<Integer> index) {
@@ -71,8 +64,7 @@ public class Util {
 	/**
 	 * 计算数组列表的平均值
 	 * 
-	 * @param number
-	 *            数组列表
+	 * @param number 数组列表
 	 * @return 平均值
 	 */
 	public static Double AverageInt(List<Integer> number) {
@@ -85,10 +77,8 @@ public class Util {
 	/**
 	 * 计算数组列表中指定序号所对应数的平均值
 	 * 
-	 * @param number
-	 *            数组列表
-	 * @param index
-	 *            指定序号列表
+	 * @param number 数组列表
+	 * @param index 指定序号列表
 	 * @return 平均值
 	 */
 	public static Double AverageInt(List<Integer> number, List<Integer> index) {
@@ -101,6 +91,7 @@ public class Util {
 
 	/**
 	 * 获取数组中最大值的序号 <code>index</code>
+	 * 
 	 * @param list 数组
 	 * @return 最大值序号
 	 */
@@ -109,13 +100,31 @@ public class Util {
 		Double temp = -Double.MAX_VALUE;
 
 		for (Integer i = 0; i < list.size(); i++) {
-			if(list.get(i) > temp){
+			if (list.get(i) > temp) {
 				temp = list.get(i);
 				index = i;
 			}
 		}
 
 		return index;
+	}
+
+	/**
+	 * 在数组列表中搜索指定的值
+	 * 
+	 * @param list 数组列表
+	 * @param t 指定的值
+	 * @return 匹配的序号列表
+	 */
+	public static List<Integer> Search(List<Integer> list, Integer t) {
+		List<Integer> result = new ArrayList<>();
+
+		for (Integer i = 0; i < list.size(); i++) {
+			if (list.get(i) == t)
+				result.add(i);
+		}
+
+		return result;
 	}
 
 }

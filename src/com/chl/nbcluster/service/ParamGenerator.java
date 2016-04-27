@@ -31,5 +31,11 @@ public interface ParamGenerator {
 	 * @return 聚类中心点 index
 	 */
 	public List<Integer> GenerateCenter();
+	
+	/**
+	 * 生成聚类核心
+	 * @return 聚类核心列表
+	 */
+	public List<List<Integer>> GenerateCore();
 
 }

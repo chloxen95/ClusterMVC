@@ -65,12 +65,17 @@ public class ParamGeneratorImpl implements ParamGenerator {
 		return jIndex;
 	}
 
-	@Override
 	public List<Integer> GenerateCenter() {
 		cc = new ClusterCenter(rhoData.getRho(), sigmaData.getSigma());
 		List<Integer> center = cc.getCenter(2);
 		
 		return center;
+	}
+
+	@Override
+	public List<List<Integer>> GenerateCore() {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }
