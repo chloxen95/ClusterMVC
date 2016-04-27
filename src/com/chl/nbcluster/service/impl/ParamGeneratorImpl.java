@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.chl.nbcluster.core.algotithm.ClusterCenter;
 import com.chl.nbcluster.core.algotithm.Rho;
 import com.chl.nbcluster.core.algotithm.Sigma;
 import com.chl.nbcluster.service.ParamGenerator;
@@ -16,6 +17,7 @@ public class ParamGeneratorImpl implements ParamGenerator {
 	List<Double[]> list;
 	Rho rhoData;
 	Sigma sigmaData;
+	ClusterCenter cc;
 
 	public List<Double[]> GeneratePoints(HttpServletRequest request) {
 		Double x1_upper = Double.parseDouble(request.getParameter("x1_upper"));
@@ -61,6 +63,14 @@ public class ParamGeneratorImpl implements ParamGenerator {
 		System.out.println(jIndex);
 		
 		return jIndex;
+	}
+
+	@Override
+	public List<Integer> GenerateCenter() {
+		cc = new ClusterCenter(rhoData.getRho(), sigmaData.getSigma());
+		List<Integer> center = cc.getCenter(2);
+		
+		return center;
 	}
 
 }

@@ -25,5 +25,11 @@ public interface ParamGenerator {
 	 * @return 参数 <code>jIndex</code>
 	 */
 	public List<Integer> GenerateJIndex();
+	
+	/**
+	 * 生成聚类中心点 index
+	 * @return 聚类中心点 index
+	 */
+	public List<Integer> GenerateCenter();
 
 }
