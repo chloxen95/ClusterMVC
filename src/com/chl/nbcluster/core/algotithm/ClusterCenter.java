@@ -7,7 +7,8 @@ import com.chl.nbcluster.utils.Util;
 
 /**
  * 获取聚类中心点
- * <p> 算法简介：<code>rho</code> 与 <code>sigma</code> 乘积最大的几个值为聚类中心
+ * <p>
+ * 算法简介：<code>rho</code> 与 <code>sigma</code> 乘积最大的几个值为聚类中心
  * 
  * @author Hanlin
  *
@@ -31,6 +32,7 @@ public class ClusterCenter {
 
 	/**
 	 * 构造方法
+	 * 
 	 * @param rho 参数 <code>rho</code>
 	 * @param sigma 参数 <code>sigma</code>
 	 */
@@ -44,8 +46,13 @@ public class ClusterCenter {
 			beta.add(rho.get(i) * sigma.get(i));
 	}
 
+	public List<Double> getBeta() {
+		return beta;
+	}
+
 	/**
 	 * 获取聚类中心点的序号
+	 * 
 	 * @param num 聚类中心点数量
 	 * @return 序号
 	 */

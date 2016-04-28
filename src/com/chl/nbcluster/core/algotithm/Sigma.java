@@ -25,8 +25,8 @@ public class Sigma {
 	 * 计算 Sigma(i) 时点 j 坐标的序号
 	 */
 	private List<Integer> jIndex = new ArrayList<>();
-	
-	public List<Integer> getJIndex(){
+
+	public List<Integer> getJIndex() {
 		return jIndex;
 	}
 
@@ -41,17 +41,14 @@ public class Sigma {
 	/**
 	 * <code>sigma</code> 类的构造方法
 	 * 
-	 * @param dataset
-	 *            数据集
-	 * @param rho
-	 *            局部密度
+	 * @param dataset 数据集
+	 * @param rho 局部密度
 	 */
 	public Sigma(List<Double[]> dataset, List<Integer> rho) {
 		super();
 		this.dataset = dataset;
 		this.rho = rho;
 	}
-	
 
 	/**
 	 * 计算 <code>sigma</code>
@@ -71,7 +68,7 @@ public class Sigma {
 						// ↑ --- 判断 j 的局部密度是否大于 j
 						&&
 						// ↓ --- 判断两点距离是否更小
-						(dij < sigma_temp)){
+						(dij < sigma_temp)) {
 					sigma_temp = dij;
 					j_temp = j;
 				}
@@ -87,7 +84,7 @@ public class Sigma {
 			} else {
 				jIndex.add(j_temp);
 			}
-			
+
 			sigma.add(sigma_temp);
 		}
 

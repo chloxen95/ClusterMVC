@@ -9,35 +9,35 @@ import com.chl.nbcluster.utils.Util;
  * @author Hanlin
  *
  */
-public class ClusterCore {
+public class ClusterClassify {
 
 	private List<Double[]> point;
 	private List<Integer> center;
 	private List<Integer> jinx;
 
-	public ClusterCore(List<Double[]> point, List<Integer> center, List<Integer> jinx) {
+	public ClusterClassify(List<Double[]> point, List<Integer> center, List<Integer> jinx) {
 		super();
 		this.point = point;
 		this.center = center;
 		this.jinx = jinx;
-		
-		for (int i : center) 
+
+		for (int i : center)
 			jinx.remove(i);
 	}
 
-	public List<Object> getCore() {
-		List<Object> core = new ArrayList<>();
+	public List<Object> getClassify() {
+		List<Object> classify = new ArrayList<>();
 
 		for (Integer c : center) {
 			List<Integer> temp = Util.Search(jinx, c);
 			if (!temp.isEmpty()) {
-				for(Integer c_t: temp){
-					
+				for (Integer c_t : temp) {
+
 				}
 			}
 		}
 
-		return core;
+		return classify;
 	}
 
 }
