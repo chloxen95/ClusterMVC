@@ -108,6 +108,26 @@ public class Util {
 
 		return index;
 	}
+	
+	/**
+	 * 获取数组中最大值的序号 <code>index</code>
+	 * 
+	 * @param list 数组
+	 * @return 最大值序号
+	 */
+	public static Integer getMaxInt(List<Integer> list) {
+		Integer index = -1;
+		Integer temp = -Integer.MAX_VALUE;
+
+		for (Integer i = 0; i < list.size(); i++) {
+			if (list.get(i) > temp) {
+				temp = list.get(i);
+				index = i;
+			}
+		}
+
+		return index;
+	}
 
 	/**
 	 * 在数组列表中搜索指定的值
@@ -127,4 +147,20 @@ public class Util {
 		return result;
 	}
 
+	/**
+	 * 降序排列
+	 * @param list 目标列表
+	 * @return 降序排列结果
+	 */
+	public static List<Integer> DecentSort(List<Integer> list) {
+		List<Integer> result = new ArrayList<>();
+
+		for (Integer i = 0; i < list.size(); i++) {
+			Integer maxIndex = Util.getMaxInt(list);
+			result.add(list.get(maxIndex));
+			list.remove(maxIndex);
+		}
+
+		return result;
+	}
 }

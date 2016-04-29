@@ -1,5 +1,6 @@
 package com.chl.nbcluster.test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,7 +32,7 @@ public class nbclusterTest {
 	Sigma sigmaData;
 	List<Double> sigma;
 
-	@Before
+	// @Before
 	public void getParams() {
 		// 获取数据
 		dataLoader = new DataLoader("E:\\Cluster\\points.txt");
@@ -52,13 +53,13 @@ public class nbclusterTest {
 
 	@Test
 	public void testParams() {
-		 int total = dataset.size();
-		
-		 System.out.println("[");
-		 for (int i = 0; i < total; i++) {
-		 System.out.println("\t[" + rho.get(i) + "," + sigma.get(i) + "],");
-		 }
-		 System.out.println("]");
+		int total = dataset.size();
+
+		System.out.println("[");
+		for (int i = 0; i < total; i++) {
+			System.out.println("\t[" + rho.get(i) + "," + sigma.get(i) + "],");
+		}
+		System.out.println("]");
 	}
 
 	@Test
@@ -83,4 +84,30 @@ public class nbclusterTest {
 
 	}
 
+	@Test
+	public void testSearch() {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(3);
+		list.add(5);
+		
+		List<Integer> result = Util.Search(list, 3);
+		System.out.println(result);
+		
+	}
+	
+	@Test
+	public void testRemove(){
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(3);
+		list.add(5);
+		
+		list.remove(2);
+		System.out.println(list);
+	}
 }
